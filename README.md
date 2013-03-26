@@ -5,13 +5,13 @@ This is a collection of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_Cod
 **This project is currently under development**
 
 # Features:
-* Check for removed functions
+* Check for removed functions (MySQL, mycryp_*)
 * Check for `/e` modifier in regular expressions
 
 # In Progress
 
 # Detailed
-* Removed functions: `php_logo_guid`, `php_egg_logo_guid`, `php_real_logo_guid`, `zend_logo_guid`, `mcrypt_cbc`, `mcrypt_cfb`, `mcrypt_ecb`, `mcrypt_ofb
+* Removed functions: `php_logo_guid`, `php_egg_logo_guid`, `php_real_logo_guid`, `zend_logo_guid`, `mcrypt_cbc`, `mcrypt_cfb`, `mcrypt_ecb`, `mcrypt_ofb`, `mysql_*`
 
 # Usage
 

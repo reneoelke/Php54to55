@@ -15,10 +15,10 @@
  */
 
 /**
- * Deprecated Function Call
+ * Regexp /e Modifier Sniff
  *
- * Checks PHP source files for calls to functions that have been removed in
- * PHP 5.5.
+ * Checks for the usage of the /e modifier in strings that appear to be regular
+ * expressions.
  *
  * @category  PHP
  * @package   PHP_CodeSniffer
