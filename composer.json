@@ -1,0 +1,21 @@
+{
+	"name": "foobugs/php54to55",
+    "description": "PHP54to55 is a collection of sniffs for PHP_CodeSniffer that check an PHP 5.4 application for PHP 5.45compatibility.",
+    "type": "phpcs-standard",
+    "keywords": [
+        "phpcs",
+        "standards",
+        "php5.4",
+        "php5.5",
+        "compatibility"
+    ],
+    "homepage": "https://github.com/foobugs/PHP54to55",
+    "support": {
+        "issues": "https://github.com/foobugs/PHP54to55/issues",
+        "source": "https://github.com/foobugs/PHP54to55"
+    },
+	"require": {
+        "php": ">=5.3",
+        "squizlabs/php_codesniffer": "1.*"
+    }
+}
