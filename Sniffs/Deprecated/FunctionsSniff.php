@@ -53,6 +53,10 @@ extends Generic_Sniffs_PHP_DeprecatedFunctionsSniff
         'php_egg_logo_guid' => null,
         'php_real_logo_guid' => null,
         'zend_logo_guid' => null,
+        'mcrypt_cbc' => null,
+        'mcrypt_cfb' => null,
+        'mcrypt_ecb' => null,
+        'mcrypt_ofb' => null,
     );
 
     /**

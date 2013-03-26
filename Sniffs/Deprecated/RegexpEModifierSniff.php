@@ -56,7 +56,6 @@ extends PHP54to55_AbstractSniff
                 $stackPtr,
                 'ErrorRegexpWithEModifier'
             );
-            return true;
         }
         
         return true;

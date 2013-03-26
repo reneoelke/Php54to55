@@ -6,12 +6,12 @@ This is a collection of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_Cod
 
 # Features:
 * Check for removed functions
-* Check for `/e` modifier in regular expression
+* Check for `/e` modifier in regular expressions
 
 # In Progress
 
 # Detailed
-* Removed functions: `php_logo_guid`, `php_egg_logo_guid`, `php_real_logo_guid`, `zend_logo_guid`
+* Removed functions: `php_logo_guid`, `php_egg_logo_guid`, `php_real_logo_guid`, `zend_logo_guid`, `mcrypt_cbc`, `mcrypt_cfb`, `mcrypt_ecb`, `mcrypt_ofb
 
 # Usage
 
