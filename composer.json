@@ -5,9 +5,20 @@
     "keywords": [
         "phpcs",
         "standards",
+        "sniff",
+        "migration",
+        "tool",
         "php5.4",
         "php5.5",
         "compatibility"
+    ],
+    "authors": [
+        {
+            "name": "Marcel Eichner",
+            "email": "marcel.eichner@foobugs.com",
+            "homepage": "http://www.marceleichner.de",
+            "role": "Developer"
+        }
     ],
     "homepage": "https://github.com/foobugs/PHP54to55",
     "support": {

@@ -2,6 +2,8 @@
 
 echo php_logo_guid() + php_egg_logo_guid().php_real_logo_guid();
 
+# user defined function should be possible now
+function php_logo_guid() { }
 ?>
 <?= php_logo_guid(); ?>
 
