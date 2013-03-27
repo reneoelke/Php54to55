@@ -1,0 +1,13 @@
+<?php
+
+echo MYSQL_CLIENT_INTERACTIVE;
+
+echo 'MYSQL_CLIENT_INTERACTIVE';
+
+define('MYSQL_CLIENT_INTERACTIVE', '12');
+
+class MyCustomClass {
+	const MYSQL_CLIENT_INTERACTIVE = 'i am ok';
+
+	const SOME_OTHER_CONST = MYSQL_ASSOC;
+}
