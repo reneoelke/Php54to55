@@ -57,6 +57,8 @@ extends Generic_Sniffs_PHP_DeprecatedFunctionsSniff
         'mcrypt_cfb' => null,
         'mcrypt_ecb' => null,
         'mcrypt_ofb' => null,
+        // deprecated IntlDateFormatter::setTimeZoneID functional interface
+        'datefmt_set_timezone_id' => 'use datefmt_set_timezone instead',
     );
 
     /**

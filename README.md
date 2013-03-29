@@ -8,6 +8,7 @@ This is a collection of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_Cod
 * Check for deprecated & removed functions (MySQL, mycryp_*)
 * Check for `/e` modifier in regular expressions
 * Check for removed Constants (MySQL)
+* Check for `setTimeZoneID` or `datefmt_set_timezone_id` usage
 
 # In Progress
 

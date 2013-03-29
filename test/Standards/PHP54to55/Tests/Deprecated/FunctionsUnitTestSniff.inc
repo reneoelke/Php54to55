@@ -7,6 +7,8 @@ mcrypt_cfb();
 mcrypt_ecb();
 mcrypt_ofb();
 
+echo datefmt_set_timezone_id($param);
+
 # user defined function should be possible now
 function php_logo_guid() { }
 ?>
