@@ -4,6 +4,8 @@ This is a collection of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_Cod
 
 **This project is currently under development**
 
+[![Build Status](https://secure.travis-ci.org/goatherd/Php54to55.png?branch=next-gen)](https://travis-ci.org/goatherd/Php54to55)
+
 # Features:
 * Check for deprecated & removed functions (MySQL, mycrypt_*)
 * Check for `/e` modifier in regular expressions

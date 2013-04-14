@@ -1,37 +1,23 @@
 <?php
 
-/**
- * Removed Function Aliases Test
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
- */
+namespace Php54to55\Sniffs\Deprecated;
+
+use PHP_CodeSniffer_File;
 
 /**
  * Deprecated Method Sniff
  *
- * This sniff searches for calls to deprecated methods. It adds warnings if 
+ * This sniff searches for calls to deprecated methods. It adds warnings if
  * a method is called which is listed in $forbiddenMethods.
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
  */
-class PHP54to55_Sniffs_Deprecated_MethodsSniff
-extends PHP54to55_AbstractSniff
+class MethodsSniff extends \PHP54to55\AbstractSniff
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $supportedTokenizers = array(
         'PHP',
     );
@@ -45,7 +31,7 @@ extends PHP54to55_AbstractSniff
         )
     );
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function register()
     {
         return array(
@@ -56,7 +42,7 @@ extends PHP54to55_AbstractSniff
 
     protected $lastObjectOperatorToken;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
@@ -70,11 +56,11 @@ extends PHP54to55_AbstractSniff
                 $possibleMethodName = strtolower($token['content']);
                 // do nothing if string is not a method in the list
                 if (!isset($this->forbiddenMethods[$possibleMethodName])) {
-                    return true;
+                    return ;
                 }
                 // do nothing if no last object operator token
                 if (!isset($this->lastObjectOperatorToken)) {
-                    return true;
+                    return ;
                 }
                 // check if last object operator is in front of the method string
                 $message = sprintf(
@@ -85,9 +71,8 @@ extends PHP54to55_AbstractSniff
                 $phpcsFile->addWarning(
                     $message,
                     $stackPtr,
-                    'ErrorDeprecatedMethod'
+                    'Deprecated'
                 );
         }
-        return true;
     }
 }

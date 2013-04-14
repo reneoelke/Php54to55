@@ -1,18 +1,8 @@
 <?php
 
-/**
- * Forbidden Function Names
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
- */
+namespace Php54to55\Sniffs\PHP;
+
+use PHP_CodeSniffer_File;
 
 /**
  * Forbidden Class names
@@ -20,16 +10,13 @@
  * Searches for definitions of global classes which were added in PHP 5.4.
  * A complete list: http://www.php.net/manual/en/migration55.classes.php
  *
- * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
  */
-class PHP54to55_Sniffs_PHP_ForbiddenClassNamesSniff
-extends PHP54to55_AbstractSniff
+class ForbiddenClassNamesSniff extends \PHP54to55\AbstractSniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -40,7 +27,7 @@ extends PHP54to55_AbstractSniff
         'PHP',
     );
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function register()
     {
         return array(
@@ -61,8 +48,8 @@ extends PHP54to55_AbstractSniff
         'IntlRuleBasedBreakIterator',
         'IntlCodePointBreakIterator',
     );
-    
-    /** @inheritdoc */
+
+    /** {@inheritdoc} */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
@@ -78,19 +65,15 @@ extends PHP54to55_AbstractSniff
 
         // check if the class name is forbidden
         $nameOfClass = strtolower($nameOfClass);
-        foreach($this->forbiddenClassnames as $forbiddenClassname) {
+        foreach ($this->forbiddenClassnames as $forbiddenClassname) {
 
             if (strtolower($forbiddenClassname) == $nameOfClass) {
                 $message = sprintf(
                     '%s was added in PHP 5.5 the global namespace and can’t be defined',
                     $forbiddenClassname
                 );
-                $phpcsFile->addError(
-                    $message, $stackPtr
-                );
+                $phpcsFile->addError($message, $stackPtr);
             }
         }
-
-        return true;
-    }   
+    }
 }
