@@ -1,32 +1,62 @@
 {
     "name": "foobugs-standards/php54to55",
-    "description": "PHP54to55 is a collection of sniffs for PHP_CodeSniffer that check an PHP application for PHP 5.4 compatibility.",
+    "description": "Php54to55 is a collection of sniffs for PHP_CodeSniffer that check an PHP 5.4 application for PHP 5.5 compatibility.",
     "type": "phpcs-standard",
     "keywords": [
         "phpcs",
+        "PHP_CodeSniffer",
         "standards",
         "sniff",
-        "migration",
-        "tool",
         "php5.4",
         "php5.5",
-        "compatibility"
+        "compatibility",
+        "migration",
+        "tool",
+        "tool",
+        "static",
+        "analysis"
     ],
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Marcel Eichner",
             "email": "marcel.eichner@foobugs.com",
             "homepage": "http://www.marceleichner.de",
             "role": "Developer"
+        },
+        {
+            "name": "Maik Penz",
+            "email": "maik.penz@foobugs.com",
+            "role": "Developer"
         }
     ],
-    "homepage": "https://github.com/foobugs-standards/php54to55",
+    "homepage": "https://github.com/foobugs-standards/Php54to55",
     "support": {
-        "issues": "https://github.com/foobugs-standards/php54to55/issues",
-        "source": "https://github.com/foobugs-standards/php54to55"
+        "issues": "https://github.com/foobugs-standards/Php54to55/issues",
+        "source": "https://github.com/foobugs-standards/Php54to55"
     },
 	"require": {
-        "php": ">=5.3",
-        "squizlabs/php_codesniffer": "1.*"
+        "php": ">=5.5.0",
+        "goatherd/phpcs_installer": "1.*",
+        "goatherd/phpcs-patch": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.*"
+    },
+    "autoload": {
+        "psr-0": { "Php54to55\\": "./" }
+    },
+    "extra": {
+        "phpcs-standard": "Php54to55"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "rm -f vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55/*",
+            "rm -df vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55",
+            "mkdir vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55",
+            "ln -s ${PWD}/ruleset.xml vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55/ruleset.xml",
+            "ln -s ${PWD}/Sniffs vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55/Sniffs",
+            "ln -s ${PWD}/AbstractSniff.php vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55/AbstractSniff.php"
+        ]
     }
 }
