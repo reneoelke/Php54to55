@@ -2,6 +2,8 @@
 
 namespace Php54to55\Sniffs\PHP;
 
+use PHP_CodeSniffer_File;
+
 /**
  * Forbidden Function Names
  *

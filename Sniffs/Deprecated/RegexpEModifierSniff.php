@@ -2,6 +2,8 @@
 
 namespace Php54to55\Sniffs\Deprecated;
 
+use PHP_CodeSniffer_File;
+
 /**
  * Regexp /e Modifier Sniff
  *

@@ -2,6 +2,8 @@
 
 namespace Php54to55\Sniffs\Extensions;
 
+use PHP_CodeSniffer_File;
+
 /**
  * Deprecated MySQL Constants Sniff
  *
@@ -41,16 +43,7 @@ class MySQLConstantsSniff extends \Php54to55\AbstractSniff
         return array(T_STRING, );
     }
 
-    /**
-     * Processes this sniff, when one of its tokens is encountered.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The current file being checked.
-     * @param int                  $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
-     *
-     * @return void
-     * @see PHP_CodeSniffer_Sniff::process()
-     */
+    /** {@inheritdoc} */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();

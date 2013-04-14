@@ -2,6 +2,8 @@
 
 namespace Php54to55\Sniffs\Deprecated;
 
+use PHP_CodeSniffer_File;
+
 /**
  * Deprecated Method Sniff
  *
@@ -69,7 +71,7 @@ class MethodsSniff extends \PHP54to55\AbstractSniff
                 $phpcsFile->addWarning(
                     $message,
                     $stackPtr,
-                    'ErrorDeprecatedMethod'
+                    'Deprecated'
                 );
         }
     }
