@@ -10,7 +10,7 @@ abstract class AbstractPhpcsTestCase extends PHPUnit_Framework_TestCase
     public static $phpcsBinary;
 
     /** @var string */
-    protected $standard;
+    protected $standard = 'Php54to55';
 
     /** @var string */
     protected $fixture;
