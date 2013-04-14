@@ -36,7 +36,7 @@
         "source": "https://github.com/foobugs-standards/Php54to55"
     },
 	"require": {
-        "php": ">=5.5.0",
+        "php": ">=5.4.0",
         "goatherd/phpcs_installer": "1.*",
         "goatherd/phpcs-patch": "*"
     },
