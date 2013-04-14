@@ -3,6 +3,7 @@
 namespace Php54to55\Sniffs\Extensions;
 
 use PHP_CodeSniffer_File;
+use PHP_CodeSniffer_Tokens;
 
 /**
  * Deprecated MySQL Constants Sniff
