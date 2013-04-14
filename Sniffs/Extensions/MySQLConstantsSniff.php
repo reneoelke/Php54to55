@@ -1,18 +1,6 @@
 <?php
 
-/**
- * SQLite constant sniff
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
- */
+namespace Php54to55\Sniffs\Extensions;
 
 /**
  * Deprecated MySQL Constants Sniff
@@ -20,18 +8,14 @@
  * Searches for constants provided by the mysql extension which was removed
  * in PHP 5.5
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
  */
-class PHP54to55_Sniffs_Extensions_MySQLConstantsSniff
-implements PHP_CodeSniffer_Sniff
+class MySQLConstantsSniff extends \Php54to55\AbstractSniff
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $supportedTokenizers = array(
         'PHP',
     );
@@ -51,10 +35,10 @@ implements PHP_CodeSniffer_Sniff
         'MYSQL_NUM',
     );
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function register()
     {
-        return array( T_STRING, );
+        return array(T_STRING, );
     }
 
     /**
@@ -75,17 +59,19 @@ implements PHP_CodeSniffer_Sniff
 
         // check if constant name is registered in the list of invalid names
         if (!in_array($constantName, $this->constants)) {
-            return true;
+            return ;
         }
 
         // check if its a constant definition in a class
         $previousNotEmptyToken = $phpcsFile->findPrevious(
             PHP_CodeSniffer_Tokens::$emptyTokens,
-            $stackPtr - 1, null, true
+            $stackPtr - 1,
+            null,
+            true
         );
         $previousToken = $tokens[$previousNotEmptyToken];
         if ($previousToken['code'] == T_CONST) {
-            return true;
+            return ;
         }
 
         $phpcsFile->addError(
@@ -95,6 +81,5 @@ implements PHP_CodeSniffer_Sniff
             ),
             $stackPtr
         );
-        return true;
     }
 }

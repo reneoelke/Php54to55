@@ -1,18 +1,6 @@
 <?php
 
-/**
- * Removed Function Aliases Test
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
- */
+namespace Php54to55\Sniffs\Deprecated;
 
 /**
  * Deprecated Function Call
@@ -20,16 +8,12 @@
  * Checks PHP source files for calls to functions that have been removed in
  * PHP 5.5.
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
  */
-class PHP54to55_Sniffs_Deprecated_FunctionsSniff
-extends Generic_Sniffs_PHP_DeprecatedFunctionsSniff
+class FunctionsSniff extends \Generic_Sniffs_PHP_DeprecatedFunctionsSniff
 {
     /**
      * A list of tokenizers this sniff supports.

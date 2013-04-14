@@ -1,18 +1,6 @@
 <?php
 
-/**
- * SQLite Functions search
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
- */
+namespace Php54to55\Sniffs\Extensions;
 
 /**
  * SQLite Functions search
@@ -20,16 +8,12 @@
  * Searches for calls to the MySQL Extension functions that have been removed
  * from the default extensions in PHP 5.5.
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
  */
-class PHP54to55_Sniffs_Extensions_MySQLFunctionsSniff
-extends Generic_Sniffs_PHP_DeprecatedFunctionsSniff
+class MySQLFunctionsSniff extends \Generic_Sniffs_PHP_DeprecatedFunctionsSniff
 {
     /**
      * A list of tokenizers this sniff supports.

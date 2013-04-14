@@ -1,18 +1,6 @@
 <?php
 
-/**
- * Forbidden Function Names
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
- */
+namespace Php54to55\Sniffs\PHP;
 
 /**
  * Forbidden Function Names
@@ -22,16 +10,12 @@
  *
  * A complete list: http://www.php.net/manual/en/migration55.new-functions.php
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/PHP53to54
- * @since     1.0-beta
  */
-class PHP54to55_Sniffs_PHP_ForbiddenFunctionNamesSniff
-extends PHP54to55_AbstractSniff
+class ForbiddenFunctionNamesSniff extends \Php54to55\AbstractSniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -42,7 +26,7 @@ extends PHP54to55_AbstractSniff
         'PHP',
     );
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function register()
     {
         return array(
@@ -152,8 +136,8 @@ extends PHP54to55_AbstractSniff
         'intltz_get_error_code' => null,
         'intltz_get_error_message' => null,
     );
-    
-    /** @inheritdoc */
+
+    /** {@inheritdoc} */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
@@ -182,7 +166,5 @@ extends PHP54to55_AbstractSniff
             $functionName
         );
         $phpcsFile->addError($message, $stackPtr, 'forbiddenFunctionDefintion');
-
-        return true;
-    }   
+    }
 }
