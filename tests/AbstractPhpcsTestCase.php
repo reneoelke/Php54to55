@@ -111,7 +111,7 @@ abstract class AbstractPhpcsTestCase extends PHPUnit_Framework_TestCase
             $sniffs = '';
         }
         $fixture = escapeshellarg($fixture);
-        $xml = `$phpcs --standard=$standard $sniffs --report=xml $fixture`;
+        $xml = `$phpcs --standard=ruleset.xml $sniffs --report=xml $fixture`;
 
         $xml = @simplexml_load_string($xml);
         // assert that a report was generated
