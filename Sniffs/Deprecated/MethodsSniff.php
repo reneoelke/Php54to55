@@ -1,9 +1,5 @@
 <?php
 
-namespace Php54to55\Sniffs\Deprecated;
-
-use PHP_CodeSniffer_File;
-
 /**
  * Deprecated Method Sniff
  *
@@ -13,9 +9,9 @@ use PHP_CodeSniffer_File;
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
+ * @link      https://github.com/foobugs/PHP54to55
  */
-class MethodsSniff extends \PHP54to55\AbstractSniff
+class Php54to55_Sniffs_Deprecated_MethodsSniff implements PHP_CodeSniffer_Sniff
 {
     /** {@inheritdoc} */
     public $supportedTokenizers = array(

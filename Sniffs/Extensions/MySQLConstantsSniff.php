@@ -1,10 +1,5 @@
 <?php
 
-namespace Php54to55\Sniffs\Extensions;
-
-use PHP_CodeSniffer_File;
-use PHP_CodeSniffer_Tokens;
-
 /**
  * Deprecated MySQL Constants Sniff
  *
@@ -14,9 +9,9 @@ use PHP_CodeSniffer_Tokens;
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
+ * @link      https://github.com/foobugs/PHP54to55
  */
-class MySQLConstantsSniff extends \Php54to55\AbstractSniff
+class Php54to55_Sniffs_Extensions_MySQLConstantsSniff implements PHP_CodeSniffer_Sniff
 {
     /** {@inheritdoc} */
     public $supportedTokenizers = array(

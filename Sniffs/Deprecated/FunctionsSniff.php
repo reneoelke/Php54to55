@@ -1,7 +1,5 @@
 <?php
 
-namespace Php54to55\Sniffs\Deprecated;
-
 /**
  * Deprecated Function Call
  *
@@ -11,9 +9,9 @@ namespace Php54to55\Sniffs\Deprecated;
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
  * @copyright 2012 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP53to54
+ * @link      https://github.com/foobugs/PHP54to55
  */
-class FunctionsSniff extends \Generic_Sniffs_PHP_DeprecatedFunctionsSniff
+class Php54to55_Sniffs_Deprecated_FunctionsSniff extends Generic_Sniffs_PHP_DeprecatedFunctionsSniff
 {
     /**
      * A list of tokenizers this sniff supports.
