@@ -8,7 +8,8 @@
  *
  * @package   PHP_CodeSniffer
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
+ * @author    Maik Penz // foobugs <maik.penz@foobugs.com>
+ * @copyright 2012,2014 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/PHP54to55
  */
@@ -31,18 +32,34 @@ class Php54to55_Sniffs_PHP_ForbiddenClassNamesSniff implements PHP_CodeSniffer_S
         );
     }
 
+    public function __construct()
+    {
+        // convert human readable to testable format
+        $forbiddenClassnames = array();
+        foreach ($this->forbiddenClassnames as $cn) {
+            $forbiddenClassnames[strtolower($cn)] = true;
+        }
+    }
+
     /**
      * A list of forbidden function names
      *
      * @var array(string => array(string, [string]))
      */
     protected $forbiddenClassnames = array(
+        // intl
         'IntlCalendar',
         'IntlGregorianCalendar',
         'IntlTimeZone',
         'IntlBreakIterator',
         'IntlRuleBasedBreakIterator',
         'IntlCodePointBreakIterator',
+
+        // DateTime
+        'DateTimeImmutable',
+
+        // curl
+        'CURLFile',
     );
 
     /** {@inheritdoc} */
@@ -61,15 +78,12 @@ class Php54to55_Sniffs_PHP_ForbiddenClassNamesSniff implements PHP_CodeSniffer_S
 
         // check if the class name is forbidden
         $nameOfClass = strtolower($nameOfClass);
-        foreach ($this->forbiddenClassnames as $forbiddenClassname) {
-
-            if (strtolower($forbiddenClassname) == $nameOfClass) {
-                $message = sprintf(
-                    '%s was added in PHP 5.5 the global namespace and can’t be defined',
-                    $forbiddenClassname
-                );
-                $phpcsFile->addError($message, $stackPtr);
-            }
+        if (isset($this->forbiddenClassnames[$nameOfClass])) {
+            $message = sprintf(
+                '%s was added in the PHP 5.5 global namespace and can’t be defined',
+                $forbiddenClassname
+            );
+            $phpcsFile->addError($message, $stackPtr);
         }
     }
 }
