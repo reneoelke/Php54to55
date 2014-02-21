@@ -21,7 +21,7 @@ class Php54to55_Sniffs_Deprecated_RegexpEModifierSniff implements PHP_CodeSniffe
     /** {@inheritdoc} */
     public function register()
     {
-        return array(T_CONSTANT_ENCAPSED_STRING);
+        return array(T_CONSTANT_ENCAPSED_STRING, T_HEREDOC, T_NOWDOC);
     }
 
     /** {@inheritdoc} */
@@ -30,10 +30,15 @@ class Php54to55_Sniffs_Deprecated_RegexpEModifierSniff implements PHP_CodeSniffe
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
 
-        $stringValue = substr($token['content'], 1, -1);
+        if ($tokens[$stackPtr]['code'] === T_CONSTANT_ENCAPSED_STRING) {
+            $stringValue = substr($token['content'], 1, -1);
+        } else {
+            $stringValue = trim($token['content']);
+        }
+
         // check if it’s a regexp and uses the e modifier
         // note: A delimiter can be any non-alphanumeric, non-backslash, non-whitespace character.
-        if (preg_match('/^([^\pL\pN\pS\\\\]).+\1e$/u', $stringValue, $match) === 1) {
+        if (preg_match('/^([^\pL\pN\s\pZ\\\\]).+\1[a-zA-Z]*e[a-zA-Z]*$/u', $stringValue, $match) === 1) {
             $phpcsFile->addError(
                 'The "/e" modifier is deprecated in PHP 5.5. You should use preg_replace_callback() instead.',
                 $stackPtr
