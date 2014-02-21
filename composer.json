@@ -1,17 +1,16 @@
 {
     "name": "foobugs-standards/php54to55",
-    "description": "Php54to55 is a collection of sniffs for PHP_CodeSniffer that check an PHP 5.4 application for PHP 5.5 compatibility.",
+    "description": "Php54to55 tests PHP 5.4 application for 5.5 compatibility through PHP_CodeSniffer.",
     "type": "phpcs-standard",
     "keywords": [
         "phpcs",
         "PHP_CodeSniffer",
-        "standards",
+        "standard",
         "sniff",
         "php5.4",
         "php5.5",
         "compatibility",
         "migration",
-        "tool",
         "tool",
         "static",
         "analysis"
@@ -35,28 +34,23 @@
         "issues": "https://github.com/foobugs-standards/Php54to55/issues",
         "source": "https://github.com/foobugs-standards/Php54to55"
     },
-	"require": {
-        "php": ">=5.4.0",
-        "goatherd/phpcs_installer": "1.*",
-        "goatherd/phpcs-patch": "*"
+    "require": {
+        "goatherd/phpcs_installer": "~2@dev",
+        "squizlabs/php_codesniffer": "~2@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "3.*"
+        "phpunit/phpunit": "~3"
+    },
+    "suggest": {
+        "php": ">=5.5.0"
     },
     "autoload": {
         "psr-0": { "Php54to55\\": "./" }
     },
     "extra": {
-        "phpcs-standard": "Php54to55"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "rm -f vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55/*",
-            "rm -df vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55",
-            "mkdir vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55",
-            "ln -s ${PWD}/ruleset.xml vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55/ruleset.xml",
-            "ln -s ${PWD}/Sniffs vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55/Sniffs",
-            "ln -s ${PWD}/AbstractSniff.php vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Php54to55/AbstractSniff.php"
-        ]
+        "phpcs-standard": "Php54to55",
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        }
     }
 }
