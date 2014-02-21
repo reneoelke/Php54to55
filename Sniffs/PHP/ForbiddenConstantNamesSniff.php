@@ -117,7 +117,7 @@ class Php54to55_Sniffs_PHP_ForbiddenConstantNamesSniff implements PHP_CodeSniffe
         'IMG_WEIGHTED4' => true,
         'IMG_TRIANGLE' => true,
 
-        // json 
+        // json
         'JSON_ERROR_RECURSION' => true,
         'JSON_ERROR_INF_OR_NAN' => true,
         'JSON_ERROR_UNSUPPORTED_TYPE' => true,
