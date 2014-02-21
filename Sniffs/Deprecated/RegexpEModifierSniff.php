@@ -32,7 +32,8 @@ class Php54to55_Sniffs_Deprecated_RegexpEModifierSniff implements PHP_CodeSniffe
 
         $stringValue = substr($token['content'], 1, -1);
         // check if it’s a regexp and uses the e modifier
-        if (preg_match('/^(.{1}).+\1e$/', $stringValue)) {
+        // note: A delimiter can be any non-alphanumeric, non-backslash, non-whitespace character.
+        if (preg_match('/^([^\pL\pN\pS\\\\]).+\1e$/u', $stringValue, $match) === 1) {
             $phpcsFile->addError(
                 'The "/e" modifier is deprecated in PHP 5.5. You should use preg_replace_callback() instead.',
                 $stackPtr
