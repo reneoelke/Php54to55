@@ -31,14 +31,18 @@ class Php54to55_Sniffs_Deprecated_FunctionsSniff extends Generic_Sniffs_PHP_Depr
      * @var array(string => string|null)
      */
     protected $forbiddenFunctions = array(
+        // core
         'php_logo_guid' => null,
         'php_egg_logo_guid' => null,
         'php_real_logo_guid' => null,
         'zend_logo_guid' => null,
+
+        // mcrypt
         'mcrypt_cbc' => null,
         'mcrypt_cfb' => null,
         'mcrypt_ecb' => null,
         'mcrypt_ofb' => null,
+
         // deprecated IntlDateFormatter::setTimeZoneID functional interface
         'datefmt_set_timezone_id' => 'use datefmt_set_timezone instead',
     );
