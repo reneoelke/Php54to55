@@ -39,6 +39,7 @@ class Php54to55_Sniffs_PHP_ForbiddenClassNamesSniff implements PHP_CodeSniffer_S
         foreach ($this->forbiddenClassnames as $cn) {
             $forbiddenClassnames[strtolower($cn)] = true;
         }
+        $this->forbiddenClassnames = $forbiddenClassnames;
     }
 
     /**
