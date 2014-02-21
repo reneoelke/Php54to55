@@ -17,6 +17,11 @@ class ForbiddenClassNamesTest extends \AbstractPhpcsTestCase
     /** {@inheritdoc} */
     public function fixtureSniffProvider()
     {
+        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
+            // can not test traits with php 5.3
+            unset($this->errors['15:1']);
+        }
+
         $this->fixture = __DIR__ . '/_fixtures/forbiddenClassNames/1.inc';
         $fixtures = parent::fixtureSniffProvider();
 
