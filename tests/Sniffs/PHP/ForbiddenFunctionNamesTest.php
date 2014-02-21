@@ -12,7 +12,7 @@ class ForbiddenFunctionNamesTest extends \AbstractPhpcsTestCase
     protected $sniffs = array('Php54to55.PHP.ForbiddenFunctionNames');
     protected $defaultType = "Php54to55.PHP.ForbiddenFunctionNames.forbiddenFunctionDefintion";
 
-    protected $errors = array('17:10' , '19:5');
+    protected $errors = array('17:10', '19:5');
 
     /** {@inheritdoc} */
     public function fixtureSniffProvider()
