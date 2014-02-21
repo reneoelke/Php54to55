@@ -38,8 +38,12 @@ class Php54to55_Sniffs_Deprecated_RegexpEModifierSniff implements PHP_CodeSniffe
 
         // check if it’s a regexp and uses the e modifier
         // note: A delimiter can be any non-alphanumeric, non-backslash, non-whitespace character.
-        if (preg_match('/^([^\pL\pN\s\pZ\\\\]).+\1[a-zA-Z]*e[a-zA-Z]*$/u', $stringValue, $match) === 1) {
-            $phpcsFile->addError(
+        $modifiers = 'imsuxADJSUX';
+        $regex = sprintf('/^([^\pL\pN\s\pZ\\\\])(?:[^\\\\]|[\\\\](?!=\1))+\1[%s]*e[%s]*$/u', $modifiers, $modifiers);
+        if (preg_match($regex, $stringValue, $match) === 1) {
+            // remove some false positives
+            #var_dump($stringValue, $match);
+            $phpcsFile->addWarning(
                 'The "/e" modifier is deprecated in PHP 5.5. You should use preg_replace_callback() instead.',
                 $stackPtr
             );

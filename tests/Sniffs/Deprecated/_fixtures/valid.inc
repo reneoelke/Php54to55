@@ -17,3 +17,6 @@ class IntlDateFormatter {
 }
 
 Vendor\IntlDateFormatter::setTimezoneId();
+
+preg_replace(':file::line', '', '');
+preg_replace('-icanon -echo', '', '');

@@ -12,7 +12,7 @@ class RegexpEModifierTest extends \AbstractPhpcsTestCase
     protected $sniffs = array('Php54to55.Deprecated.RegexpEModifier');
     protected $defaultType = "Php54to55.Deprecated.RegexpEModifier";
 
-    protected $errors = array(
+    protected $warnings = array(
         '4:14',
         '7:14',
         '8:14',
