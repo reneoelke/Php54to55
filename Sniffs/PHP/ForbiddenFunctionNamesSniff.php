@@ -33,6 +33,11 @@ class Php54to55_Sniffs_PHP_ForbiddenFunctionNamesSniff implements PHP_CodeSniffe
         );
     }
 
+    protected $functionNameIgnore = array(
+        T_WHITESPACE => true,
+        T_COMMENT => true,
+    );
+
     /**
      * A list of forbidden function names
      *
@@ -40,134 +45,134 @@ class Php54to55_Sniffs_PHP_ForbiddenFunctionNamesSniff implements PHP_CodeSniffe
      */
     protected $forbiddenFunctions = array(
         // PHP Core
-        'boolval' => null,
-        'password_get_info' => null,
-        'password_hash' => null,
-        'password_needs_rehash' => null,
-        'password_verify' => null,
-        'array_column' => null,
+        'boolval' => true,
+        'password_get_info' => true,
+        'password_hash' => true,
+        'password_needs_rehash' => true,
+        'password_verify' => true,
+        'array_column' => true,
 
         // curl
-        'curl_escape' => null,
-        'curl_multi_setopt' => null,
-        'curl_multi_strerror curl_pause' => null,
-        'curl_reset' => null,
-        'curl_share_close' => null,
-        'curl_share_init' => null,
-        'curl_share_setopt curl_strerror and curl_unescape' => null,
+        'curl_escape' => true,
+        'curl_multi_setopt' => true,
+        'curl_multi_strerror curl_pause' => true,
+        'curl_reset' => true,
+        'curl_share_close' => true,
+        'curl_share_init' => true,
+        'curl_share_setopt curl_strerror and curl_unescape' => true,
 
         // Hash
-        'hash_pbkdf2' => null,
+        'hash_pbkdf2' => true,
 
         // GD
-        'imageaffinematrixconcat' => null,
-        'imageaffinematrixget' => null,
-        'imagecrop' => null,
-        'imagecropauto' => null,
-        'imageflip' => null,
-        'imagepalettetotruecolor' => null,
-        'imagescale' => null,
+        'imageaffinematrixconcat' => true,
+        'imageaffinematrixget' => true,
+        'imagecrop' => true,
+        'imagecropauto' => true,
+        'imageflip' => true,
+        'imagepalettetotruecolor' => true,
+        'imagescale' => true,
 
         // Intl
-        'datefmt_format_object' => null,
-        'datefmt_get_calendar_object' => null,
-        'datefmt_get_timezone' => null,
-        'datefmt_set_timezone' => null,
-        'datefmt_get_calendar_object' => null,
-        'intlcal_create_instance' => null,
-        'intlcal_get_keyword_values_for_locale' => null,
-        'intlcal_get_now' => null,
-        'intlcal_get_available_locales' => null,
-        'intlcal_get' => null,
-        'intlcal_get_time' => null,
-        'intlcal_set_time' => null,
-        'intlcal_add' => null,
-        'intlcal_set_time_zone' => null,
-        'intlcal_after' => null,
-        'intlcal_before' => null,
-        'intlcal_set' => null,
-        'intlcal_roll' => null,
-        'intlcal_clear' => null,
-        'intlcal_field_difference' => null,
-        'intlcal_get_actual_maximum' => null,
-        'intlcal_get_actual_minimum' => null,
-        'intlcal_get_day_of_week_type' => null,
-        'intlcal_get_first_day_of_week' => null,
-        'intlcal_get_greatest_minimum' => null,
-        'intlcal_get_least_maximum' => null,
-        'intlcal_get_locale' => null,
-        'intlcal_get_maximum' => null,
-        'intlcal_get_minimal_days_in_first_week' => null,
-        'intlcal_get_minimum' => null,
-        'intlcal_get_time_zone' => null,
-        'intlcal_get_type' => null,
-        'intlcal_get_weekend_transition' => null,
-        'intlcal_in_daylight_time' => null,
-        'intlcal_is_equivalent_to' => null,
-        'intlcal_is_lenient' => null,
-        'intlcal_is_set' => null,
-        'intlcal_is_weekend' => null,
-        'intlcal_set_first_day_of_week' => null,
-        'intlcal_set_lenient' => null,
-        'intlcal_equals' => null,
-        'intlcal_get_repeated_wall_time_option' => null,
-        'intlcal_get_skipped_wall_time_option' => null,
-        'intlcal_set_repeated_wall_time_option' => null,
-        'intlcal_set_skipped_wall_time_option' => null,
-        'intlcal_from_date_time' => null,
-        'intlcal_to_date_time' => null,
-        'intlcal_get_error_code' => null,
-        'intlcal_get_error_message' => null,
-        'intlgregcal_create_instance' => null,
-        'intlgregcal_set_gregorian_change' => null,
-        'intlgregcal_get_gregorian_change' => null,
-        'intlgregcal_is_leap_year' => null,
-        'intltz_create_time_zone' => null,
-        'intltz_create_default' => null,
-        'intltz_get_id' => null,
-        'intltz_get_gmt' => null,
-        'intltz_get_unknown' => null,
-        'intltz_create_enumeration' => null,
-        'intltz_count_equivalent_ids' => null,
-        'intltz_create_time_zone_id_enumeration' => null,
-        'intltz_get_canonical_id' => null,
-        'intltz_get_region' => null,
-        'intltz_get_tz_data_version' => null,
-        'intltz_get_equivalent_id' => null,
-        'intltz_use_daylight_time' => null,
-        'intltz_get_offset' => null,
-        'intltz_get_raw_offset' => null,
-        'intltz_has_same_rules' => null,
-        'intltz_get_display_name' => null,
-        'intltz_get_dst_savings' => null,
-        'intltz_from_date_time_zone' => null,
-        'intltz_to_date_time_zone' => null,
-        'intltz_get_error_code' => null,
-        'intltz_get_error_message' => null,
+        'datefmt_format_object' => true,
+        'datefmt_get_calendar_object' => true,
+        'datefmt_get_timezone' => true,
+        'datefmt_set_timezone' => true,
+        'datefmt_get_calendar_object' => true,
+        'intlcal_create_instance' => true,
+        'intlcal_get_keyword_values_for_locale' => true,
+        'intlcal_get_now' => true,
+        'intlcal_get_available_locales' => true,
+        'intlcal_get' => true,
+        'intlcal_get_time' => true,
+        'intlcal_set_time' => true,
+        'intlcal_add' => true,
+        'intlcal_set_time_zone' => true,
+        'intlcal_after' => true,
+        'intlcal_before' => true,
+        'intlcal_set' => true,
+        'intlcal_roll' => true,
+        'intlcal_clear' => true,
+        'intlcal_field_difference' => true,
+        'intlcal_get_actual_maximum' => true,
+        'intlcal_get_actual_minimum' => true,
+        'intlcal_get_day_of_week_type' => true,
+        'intlcal_get_first_day_of_week' => true,
+        'intlcal_get_greatest_minimum' => true,
+        'intlcal_get_least_maximum' => true,
+        'intlcal_get_locale' => true,
+        'intlcal_get_maximum' => true,
+        'intlcal_get_minimal_days_in_first_week' => true,
+        'intlcal_get_minimum' => true,
+        'intlcal_get_time_zone' => true,
+        'intlcal_get_type' => true,
+        'intlcal_get_weekend_transition' => true,
+        'intlcal_in_daylight_time' => true,
+        'intlcal_is_equivalent_to' => true,
+        'intlcal_is_lenient' => true,
+        'intlcal_is_set' => true,
+        'intlcal_is_weekend' => true,
+        'intlcal_set_first_day_of_week' => true,
+        'intlcal_set_lenient' => true,
+        'intlcal_equals' => true,
+        'intlcal_get_repeated_wall_time_option' => true,
+        'intlcal_get_skipped_wall_time_option' => true,
+        'intlcal_set_repeated_wall_time_option' => true,
+        'intlcal_set_skipped_wall_time_option' => true,
+        'intlcal_from_date_time' => true,
+        'intlcal_to_date_time' => true,
+        'intlcal_get_error_code' => true,
+        'intlcal_get_error_message' => true,
+        'intlgregcal_create_instance' => true,
+        'intlgregcal_set_gregorian_change' => true,
+        'intlgregcal_get_gregorian_change' => true,
+        'intlgregcal_is_leap_year' => true,
+        'intltz_create_time_zone' => true,
+        'intltz_create_default' => true,
+        'intltz_get_id' => true,
+        'intltz_get_gmt' => true,
+        'intltz_get_unknown' => true,
+        'intltz_create_enumeration' => true,
+        'intltz_count_equivalent_ids' => true,
+        'intltz_create_time_zone_id_enumeration' => true,
+        'intltz_get_canonical_id' => true,
+        'intltz_get_region' => true,
+        'intltz_get_tz_data_version' => true,
+        'intltz_get_equivalent_id' => true,
+        'intltz_use_daylight_time' => true,
+        'intltz_get_offset' => true,
+        'intltz_get_raw_offset' => true,
+        'intltz_has_same_rules' => true,
+        'intltz_get_display_name' => true,
+        'intltz_get_dst_savings' => true,
+        'intltz_from_date_time_zone' => true,
+        'intltz_to_date_time_zone' => true,
+        'intltz_get_error_code' => true,
+        'intltz_get_error_message' => true,
 
         // 5.5.1
-        'intlcal_set_minimal_days_in_first_week' => null,
+        'intlcal_set_minimal_days_in_first_week' => true,
 
         // mysqli
-        'mysqli_begin_transaction' => null,
-        'mysqli_savepoint' => null,
-        'mysqli_release_savepoint' => null,
+        'mysqli_begin_transaction' => true,
+        'mysqli_savepoint' => true,
+        'mysqli_release_savepoint' => true,
 
         // mysqlnd
-        'mysqlnd_savepoint' => null,
-        'mysqlnd_release_savepoint' => null,
+        'mysqlnd_savepoint' => true,
+        'mysqlnd_release_savepoint' => true,
 
         // pgsql
-        'pg_escape_literal' => null,
-        'pg_escape_identifier' => null,
+        'pg_escape_literal' => true,
+        'pg_escape_identifier' => true,
 
         // socket
-        'socket_cmsg_space' => null,
-        'socket_sendmsg' => null,
-        'socket_recvmsg' => null,
+        'socket_cmsg_space' => true,
+        'socket_sendmsg' => true,
+        'socket_recvmsg' => true,
 
         // 5.5.4
-        'opcache_compile_file' => null,
+        'opcache_compile_file' => true,
     );
 
     /** {@inheritdoc} */
@@ -179,18 +184,26 @@ class Php54to55_Sniffs_PHP_ForbiddenFunctionNamesSniff implements PHP_CodeSniffe
         $functionName = strtolower($token['content']);
 
         // continue if string is a function name
-        if (!array_key_exists($functionName, $this->forbiddenFunctions)) {
+        if (!isset($this->forbiddenFunctions[$functionName])) {
             return true;
         }
+
         // check if it’s a global method by simply checking the level
         if ($token['level'] !== 0) {
             return true;
         }
-        // check if it’s a function definition
+
+        // check if it is a function definition
         if ($stackPtr <= 2) {
             return false;
         }
-        if ($tokens[$stackPtr-2]['type'] != 'T_FUNCTION') {
+
+        // there may be some tokens between T_FUNCTION and function name: skip those
+        $stackPtrIterator = $stackPtr-2;
+        while ($stackPtrIterator > 1 && isset($this->functionNameIgnore[$tokens[$stackPtrIterator]['code']])) {
+            $stackPtrIterator--;
+        }
+        if ($tokens[$stackPtrIterator]['type'] != 'T_FUNCTION') {
             return true;
         }
 
