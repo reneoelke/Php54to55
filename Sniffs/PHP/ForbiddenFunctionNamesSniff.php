@@ -9,7 +9,8 @@
  * A complete list: http://www.php.net/manual/en/migration55.new-functions.php
  *
  * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
+ * @author    Maik Penz // foobugs <maik.penz@foobugs.com>
+ * @copyright 2012,2014 foobugs oelke & eichner GbR
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/PHP54to55
  */
@@ -44,6 +45,16 @@ class Php54to55_Sniffs_PHP_ForbiddenFunctionNamesSniff implements PHP_CodeSniffe
         'password_hash' => null,
         'password_needs_rehash' => null,
         'password_verify' => null,
+        'array_column' => null,
+
+        // curl
+        'curl_escape' => null,
+        'curl_multi_setopt' => null,
+        'curl_multi_strerror curl_pause' => null,
+        'curl_reset' => null,
+        'curl_share_close' => null,
+        'curl_share_init' => null,
+        'curl_share_setopt curl_strerror and curl_unescape' => null,
 
         // Hash
         'hash_pbkdf2' => null,
@@ -133,6 +144,30 @@ class Php54to55_Sniffs_PHP_ForbiddenFunctionNamesSniff implements PHP_CodeSniffe
         'intltz_to_date_time_zone' => null,
         'intltz_get_error_code' => null,
         'intltz_get_error_message' => null,
+
+        // 5.5.1
+        'intlcal_set_minimal_days_in_first_week' => null,
+
+        // mysqli
+        'mysqli_begin_transaction' => null,
+        'mysqli_savepoint' => null,
+        'mysqli_release_savepoint' => null,
+
+        // mysqlnd
+        'mysqlnd_savepoint' => null,
+        'mysqlnd_release_savepoint' => null,
+
+        // pgsql
+        'pg_escape_literal' => null,
+        'pg_escape_identifier' => null,
+
+        // socket
+        'socket_cmsg_space' => null,
+        'socket_sendmsg' => null,
+        'socket_recvmsg' => null,
+
+        // 5.5.4
+        'opcache_compile_file' => null,
     );
 
     /** {@inheritdoc} */
