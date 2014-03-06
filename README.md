@@ -5,7 +5,7 @@ that check an PHP 5.4 application for PHP 5.5 compatibility.
 
 **This project is currently under development**
 
-[![Build Status](https://secure.travis-ci.org/goatherd/Php54to55.png?branch=next-gen)](https://travis-ci.org/goatherd/Php54to55)
+[![Build Status](https://secure.travis-ci.org/foobugs-standards/Php54to55.png?branch=master)](https://travis-ci.org/foobugs-standards/Php54to55)
 
 # Requirements
 
