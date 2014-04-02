@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(__FILE__) . '/../../bootstrap.php';
+
 /**
  *
  * @category  PHP
@@ -9,15 +11,15 @@
  * @license   BSD http://www.opensource.org/licenses/bsd-license.php
  * @link      https://github.com/foobugs/Php54to55
  */
-class Php54to55_Sniffs_PHP_ReservedKeywordsSniff implements PHP_CodeSniffer_Sniff
+class Php54to55_Sniffs_PHP_ReservedKeywordsSniff extends Foobugs_Standard_AbstractSniff
 {
-    /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = array(
-        'PHP',
+    protected $fooRegisterToken = array(
+        T_DIR,
+        T_GOTO,
+        T_NAMESPACE,
+        T_NS_C,
+        T_STRING,
+        T_USE,
     );
 
     /**
@@ -28,24 +30,6 @@ class Php54to55_Sniffs_PHP_ReservedKeywordsSniff implements PHP_CodeSniffer_Snif
     private $keywords = array(
         'finally' => false,
     );
-
-    /**
-     * Returns the token types that this sniff is interested in.
-     *
-     * @return array(int)
-     * @see PHP_CodeSniffer_Sniff::register()
-     */
-    public function register()
-    {
-        return array(
-            T_DIR,
-            T_GOTO,
-            T_NAMESPACE,
-            T_NS_C,
-            T_STRING,
-            T_USE,
-        );
-    }
 
     /**
      * Processes the tokens that this sniff is interested in.

@@ -1,5 +1,6 @@
 Php54to55
 ===============================================================================
+
 This is a collection of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer)
 that check an PHP 5.4 application for PHP 5.5 compatibility.
 
