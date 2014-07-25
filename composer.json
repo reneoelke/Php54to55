@@ -35,8 +35,8 @@
         "source": "https://github.com/foobugs-standards/Php54to55"
     },
     "require": {
-        "goatherd/phpcs_installer": "2.*@dev",
-        "squizlabs/php_codesniffer": "2.*@dev"
+        "goatherd/phpcs_installer": "~2@dev",
+        "squizlabs/php_codesniffer": "~2@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "~3"
