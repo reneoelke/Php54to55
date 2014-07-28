@@ -9,6 +9,11 @@ $arguments = array(
     realpath(__DIR__ . '/../..'),
 );
 
+// set standard standard name if not given
+if (false === stripos(implode($argv), '--standard=')) {
+    $arguments[] = '--standard=' . basename($rootPath);
+}
+
 // Insert special arguments before all others
 array_splice($argv, 1, 0, $arguments);
 $argc = sizeof($argv);
