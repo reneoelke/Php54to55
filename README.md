@@ -43,10 +43,13 @@ Run the following commands:
 composer install
 
 # test all sniffs
-vendor/bin/snout --standard=Php54to55 /path/to/code
+vendor/bin/snout /path/to/code
 
 # test a single sniff only
-vendor/bin/snout --standard=Php54to55 --sniffs=Php54to55.Deprecated.Functions /path/to/code
+vendor/bin/snout --sniffs=Php54to55.Deprecated.Functions /path/to/code
+
+# skip a sniff
+vendor/bin/snout --sniffs='-Php54to55.Deprecated.Functions' /path/to/code
 ```
 
 # Versioning
