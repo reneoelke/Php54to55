@@ -4,12 +4,12 @@ php:
   - 5.3
   - 5.4
   - 5.5
-  - hhvm
+#  - hhvm
 
 before_script:
   - composer install --dev
 
 script:
-  - phpunit
+  - vendor/bin/phpunit
   - vendor/bin/phpcs --standard=PSR2 --report=summary -np Sniffs/
   - vendor/bin/phpcs --standard=ruleset.xml --report=summary -np Sniffs/
