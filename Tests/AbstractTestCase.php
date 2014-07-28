@@ -1,37 +1,65 @@
 <?php
 
+/*
+ * This file is part of the Php54to55 package.
+ *
+ * Copyright (c) 2013-2014, foobugs Oelke & Eichner GbR <mail@foobugs.com>.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Php54to55\Tests;
+
+use PHPUnit_Framework_TestCase;
+
 /**
  * Compares phpcs report on fixtures against expected report.
  *
  */
-abstract class AbstractPhpcsTestCase extends PHPUnit_Framework_TestCase
+abstract class AbstractTestCase extends PHPUnit_Framework_TestCase
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public static $phpcsBinary;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $standard = 'Php54to55';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $fixture;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $defaultType;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $sniffs = array();
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $warnings = array();
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $errors = array();
 
-    /** @var integer */
+    /**
+     * @var integer
+     */
     protected $defaultSeverity = 5;
 
     /**
-     *
      * @param array $list
      */
     protected function fixtureExpandErrorList(array &$list)
@@ -55,12 +83,12 @@ abstract class AbstractPhpcsTestCase extends PHPUnit_Framework_TestCase
                     }
                     break;
                 default:
+                    break;
             }
         }
     }
 
     /**
-     *
      * For each fixture a file './_fixtures/FIXTURE_NAME.php' is tested against
      * the phpcs binary with getStandardName() and sniffs from getSniffNames().
      * The report is matched against the second value.
@@ -83,7 +111,9 @@ abstract class AbstractPhpcsTestCase extends PHPUnit_Framework_TestCase
         return $fixtures;
     }
 
-    /** {@inheritdoc} */
+    /**
+     * {@inheritdoc}
+     */
     public function setUp()
     {
         if (!self::$phpcsBinary) {
