@@ -9,11 +9,9 @@ to test PHP 5.4 applications for compatibility with PHP 5.5.
 
 # Requirements
 
-- PHP >= 5.5.0
+- PHP >= 5.3
 
-(Requires at least PHP 5.3.2 but will not properly test `trait` names until PHP 5.4.0 or later.)
-
-(It is suggested that you test compatibility with PHP 5.5 or newer in order to use the most up-to-date PHP parser/ tokenizer.)
+It is strongly recommended to use the latest (stable) PHP version as the tokenizer can not handle future keywords like `trait` or `callable`.
 
 # Features
 
@@ -44,7 +42,7 @@ Run the following commands:
 ```bash
 composer install
 
-# test full standard
+# test all sniffs
 vendor/bin/snout --standard=Php54to55 /path/to/code
 
 # test a single sniff only
