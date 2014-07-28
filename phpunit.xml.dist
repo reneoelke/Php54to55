@@ -21,7 +21,7 @@
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./Sniffs</directory>
+            <directory suffix="Sniff.php">./Sniffs</directory>
         </whitelist>
     </filter>
 </phpunit>
