@@ -22,11 +22,6 @@ abstract class AbstractTestCase extends PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    public static $phpcsBinary;
-
-    /**
-     * @var string
-     */
     protected $standard = 'Php54to55';
 
     /**
@@ -112,38 +107,33 @@ abstract class AbstractTestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function setUp()
-    {
-        if (!self::$phpcsBinary) {
-            $this->markTestSkipped('No phpcs binary provided.');
-        }
-    }
-
-    /**
      * @dataProvider fixtureSniffProvider
      *
      * @param string $fixture  path to fixture
-     * @param string $standard phpcs standard name
+     * @param string $standard phpcs standard name -TODO remove unused argument
      * @param array  $sniffs   sniff names, or empty for all sniffs
      * @param array  $errors   expected errors
      * @param array  $warnings expected warnings
      */
     public function testFixtureSniff($fixture, $standard, $sniffs, $errors, $warnings)
     {
-        // prepare and get report
-        $phpcs = self::$phpcsBinary;
-        $standard = escapeshellarg($standard);
-        if ($sniffs) {
-            $sniffs = '--sniffs=' . escapeshellarg(implode(',', $sniffs));
-        } else {
-            $sniffs = '';
-        }
-        $fixture = escapeshellarg($fixture);
-        $xml = `$phpcs --standard=ruleset.xml $sniffs --report=xml $fixture`;
+        // -TODO may dig deeper into phpcs to circumvent reporting and standard validation/ cli overhead
+        $phpcs = new \PHP_CodeSniffer_CLI();
 
-        $xml = @simplexml_load_string($xml);
+        // set phpcs arguments
+        $args = $phpcs->getDefaults();
+        $args['files'] = array($fixture);
+        $args['standard'] = array(dirname(__DIR__) . '/ruleset.xml');
+        $args['sniffs'] = $sniffs;
+        $args['reports'] = array('xml' => null);
+        $args['encoding'] = 'utf8';
+
+        // get report
+        ob_start();
+        $phpcs->process($args);
+        $report = ob_get_clean();
+
+        $xml = @simplexml_load_string($report);
         // assert that a report was generated
         $this->assertNotEmpty($xml, 'Could not verify phpcs xml report.');
 
