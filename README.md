@@ -1,8 +1,7 @@
-Php54to55
-===============================================================================
+# Php54to55
 
-This is a collection of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer)
-that check an PHP 5.4 application for PHP 5.5 compatibility.
+This is a collection of sniffs for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+to test PHP 5.4 applications for compatibility with PHP 5.5.
 
 **This project is currently under development**
 
@@ -10,9 +9,11 @@ that check an PHP 5.4 application for PHP 5.5 compatibility.
 
 # Requirements
 
-Requires at least PHP 5.3.2 but will not properly test `trait` names until PHP 5.4.0 or later.
+- PHP >= 5.5.0
 
-It is suggested that you test compatibility with PHP 5.5 or newer in order to use the most up-to-date PHP parser/ tokenizer.
+(Requires at least PHP 5.3.2 but will not properly test `trait` names until PHP 5.4.0 or later.)
+
+(It is suggested that you test compatibility with PHP 5.5 or newer in order to use the most up-to-date PHP parser/ tokenizer.)
 
 # Features
 
@@ -28,7 +29,7 @@ It is suggested that you test compatibility with PHP 5.5 or newer in order to us
 
 # Usage
 
-Add `"foobugs-standards/php54to55": "~2"` to your composer.json. For example
+Add `"foobugs-standards/php54to55": "~2"` to your `composer.json`:
 
 ```json
 {
@@ -38,15 +39,22 @@ Add `"foobugs-standards/php54to55": "~2"` to your composer.json. For example
 }
 ```
 
+Run the following commands:
 
-    composer install
+```bash
+composer install
 
-    # test full standard
-    vendor/bin/phpcs --standard=php54to55/ /path/to/code
+# test full standard
+vendor/bin/snout --standard=Php54to55 /path/to/code
 
-    # test a single sniff only
-    vendor/bin/phpcs --standard=php54to55 --sniffs=Php54to55.Deprecated.Functions /path/to/code
+# test a single sniff only
+vendor/bin/snout --standard=Php54to55 --sniffs=Php54to55.Deprecated.Functions /path/to/code
+```
 
 # Versioning
 
 The major version reflects PHP_Codesniffer version while minor version reflects the standard revision.
+
+# License
+
+This software is released under the [MIT License](LICENSE).
