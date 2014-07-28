@@ -11,7 +11,7 @@ $arguments = array(
 
 // set standard standard name if not given
 if (false === stripos(implode($argv), '--standard=')) {
-    $arguments[] = '--standard=' . basename($rootPath);
+    $arguments[] = '--standard=' . basename(dirname(__DIR__));
 }
 
 // Insert special arguments before all others
