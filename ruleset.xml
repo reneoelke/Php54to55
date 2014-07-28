@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <ruleset name="Php54to55">
-	<description>A standard for migrating from PHP 5.4 to 5.5.</description>
+	<description>A standard for testing PHP 5.4 applications for PHP 5.5 compatibility.</description>
 </ruleset>
