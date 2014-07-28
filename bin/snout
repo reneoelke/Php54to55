@@ -23,9 +23,8 @@ $_SERVER['argc'] = $argc;
 
 $phpcsFilename = realpath($rootPath . '/vendor/bin/phpcs');
 if (is_file($phpcsFilename)) {
-    $result = ob_start(function ($buffer) {
-        return (str_replace('#!/usr/bin/env php' . PHP_EOL, '', $buffer));
-    });
-    require $phpcsFilename;
+    ob_start();
+    $cli = new PHP_CodeSniffer_CLI();
+    $cli->runphpcs();
     ob_end_flush();
 }
