@@ -1,13 +1,23 @@
 <?php
 
-namespace Sniffs\PHP;
+/*
+ * This file is part of the Php54to55 package.
+ *
+ * Copyright (c) 2013-2014, foobugs Oelke & Eichner GbR <mail@foobugs.com>.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Php54to55\Tests\PHP;
+
+use Php54to55\Tests\AbstractTestCase;
 
 /**
  * @group ForbiddenClassNames
  * @group PHP
- *
  */
-class ForbiddenClassNamesTest extends \AbstractPhpcsTestCase
+class ForbiddenClassNamesTest extends AbstractTestCase
 {
     protected $sniffs = array('Php54to55.PHP.ForbiddenClassNames');
     protected $defaultType = "Php54to55.PHP.ForbiddenClassNames";
@@ -24,7 +34,9 @@ class ForbiddenClassNamesTest extends \AbstractPhpcsTestCase
         '23:1',
     );
 
-    /** {@inheritdoc} */
+    /**
+     * {@inheritdoc}
+     */
     public function fixtureSniffProvider()
     {
         if (version_compare(PHP_VERSION, '5.4.0', '<')) {
@@ -37,7 +49,6 @@ class ForbiddenClassNamesTest extends \AbstractPhpcsTestCase
 
         $this->fixture = __DIR__ . '/_fixtures/forbiddenClassNames/valid.inc';
         $fixtures[] = array($this->fixture, $this->standard, $this->sniffs, array(), array());
-
 
         return $fixtures;
     }
