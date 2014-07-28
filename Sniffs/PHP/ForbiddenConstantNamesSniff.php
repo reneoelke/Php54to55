@@ -1,15 +1,32 @@
 <?php
 
-/**
+/*
+ * This file is part of the Php54to55 package.
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Maik Penz // foobugs <maik.penz@foobugs.com>
- * @copyright 2014 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/Php54to55
+ * Copyright (c) 2013-2014, foobugs Oelke & Eichner GbR <mail@foobugs.com>.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
-class Php54to55_Sniffs_PHP_ForbiddenConstantNamesSniff implements PHP_CodeSniffer_Sniff
+
+namespace Php54to55\Sniffs\PHP;
+
+use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer_File;
+use PHP_CodeSniffer_Tokens;
+
+/**
+ * Forbidden Constant Names
+ *
+ * @package Php54to55
+ * @author René Oelke <rene.oelke@foobugs.com>
+ * @author Marcel Eichner <marcel.eichner@foobugs.com>
+ * @author Maik Penz <maik.penz@foobugs.com>
+ * @copyright 2013-2014 foobugs Oelke & Eichner GbR <mail@foobugs.com>
+ * @license The MIT License (http://www.opensource.org/licenses/MIT)
+ * @link Php54to55 (https://github.com/foobugs-standards/php54to55)
+ */
+class ForbiddenConstantNamesSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -148,56 +165,47 @@ class Php54to55_Sniffs_PHP_ForbiddenConstantNamesSniff implements PHP_CodeSniffe
     public $checkNamespace = true;
 
     /**
-     * Returns the token types that this sniff is interested in.
-     *
-     * @return array(int)
-     * @see PHP_CodeSniffer_Sniff::register()
+     * {@inherited}
      */
     public function register()
     {
-        return array( T_STRING, T_NAMESPACE, );
+        return array(
+            T_STRING,
+            T_NAMESPACE,
+        );
     }
 
     /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
-     *
-     * @return void
-     * @see PHP_CodeSniffer_Sniff::process()
+     * {@inherited}
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
 
-        $result = true;
         switch($token['code']) {
             case T_NAMESPACE:
-                $result = $this->processNamespace($phpcsFile, $stackPtr);
+                $this->processNamespace($phpcsFile, $stackPtr);
                 break;
             case T_STRING:
             default:
                 if ($this->checkNamespace
                     && $this->getLastNamespaceForFile($phpcsFile)
                 ) {
-                    return false;
+                    break;
                 }
                 if (strtolower($token['content']) !== 'define') {
                     break;
                 }
-                $result = $this->processConstantDefinition($phpcsFile, $stackPtr);
+                $this->processConstantDefinition($phpcsFile, $stackPtr);
+                break;
         }
-        return $result;
     }
 
     /**
      * Get last namespace.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     *
      * @return string
      */
     protected function getLastNamespaceForFile(PHP_CodeSniffer_File $phpcsFile)
@@ -212,11 +220,9 @@ class Php54to55_Sniffs_PHP_ForbiddenConstantNamesSniff implements PHP_CodeSniffe
     /**
      * Process namespace.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int $stackPtr The position of the current token in
-     * the stack passed in $tokens.
-     *
-     * @return boolean - always true
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int $stackPtr
+     * @return bool
      */
     protected function processNamespace(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -231,13 +237,11 @@ class Php54to55_Sniffs_PHP_ForbiddenConstantNamesSniff implements PHP_CodeSniffe
     }
 
     /**
-     * No description.
+     * Process constant definition.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
-     *
-     * @return void
+     * @param PHP_CodeSniffer_File $phpcsFile
+     * @param int $stackPtr
+     * @return bool
      */
     protected function processConstantDefinition(
         PHP_CodeSniffer_File $phpcsFile,

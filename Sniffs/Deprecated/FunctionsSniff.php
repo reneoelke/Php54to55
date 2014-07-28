@@ -1,17 +1,33 @@
 <?php
 
+/*
+ * This file is part of the Php54to55 package.
+ *
+ * Copyright (c) 2013-2014, foobugs Oelke & Eichner GbR <mail@foobugs.com>.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Php54to55\Sniffs\Deprecated;
+
+use Generic_Sniffs_PHP_DeprecatedFunctionsSniff;
+
 /**
  * Deprecated Function Call
  *
  * Checks PHP source files for calls to functions that have been removed in
  * PHP 5.5.
  *
- * @author    Marcel Eichner // foobugs <marcel.eichner@foobugs.com>
- * @copyright 2012 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/PHP54to55
+ * @package Php54to55
+ * @author René Oelke <rene.oelke@foobugs.com>
+ * @author Marcel Eichner <marcel.eichner@foobugs.com>
+ * @author Maik Penz <maik.penz@foobugs.com>
+ * @copyright 2013-2014 foobugs Oelke & Eichner GbR <mail@foobugs.com>
+ * @license The MIT License (http://www.opensource.org/licenses/MIT)
+ * @link Php54to55 (https://github.com/foobugs-standards/php54to55)
  */
-class Php54to55_Sniffs_Deprecated_FunctionsSniff extends Generic_Sniffs_PHP_DeprecatedFunctionsSniff
+class FunctionsSniff extends Generic_Sniffs_PHP_DeprecatedFunctionsSniff
 {
     /**
      * A list of tokenizers this sniff supports.

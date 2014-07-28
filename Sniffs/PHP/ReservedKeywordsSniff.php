@@ -1,25 +1,39 @@
 <?php
 
-require_once dirname(__FILE__) . '/../../bootstrap.php';
+/*
+ * This file is part of the Php54to55 package.
+ *
+ * Copyright (c) 2013-2014, foobugs Oelke & Eichner GbR <mail@foobugs.com>.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Php54to55\Sniffs\PHP;
+
+use PHP_CodeSniffer_Sniff;
+use PHP_CodeSniffer_File;
 
 /**
+ * Reserved Keywords
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Maik Penz // foobugs <maik.penz@foobugs.com>
- * @copyright 2014 foobugs oelke & eichner GbR
- * @license   BSD http://www.opensource.org/licenses/bsd-license.php
- * @link      https://github.com/foobugs/Php54to55
+ * @package Php54to55
+ * @author René Oelke <rene.oelke@foobugs.com>
+ * @author Marcel Eichner <marcel.eichner@foobugs.com>
+ * @author Maik Penz <maik.penz@foobugs.com>
+ * @copyright 2013-2014 foobugs Oelke & Eichner GbR <mail@foobugs.com>
+ * @license The MIT License (http://www.opensource.org/licenses/MIT)
+ * @link Php54to55 (https://github.com/foobugs-standards/php54to55)
  */
-class Php54to55_Sniffs_PHP_ReservedKeywordsSniff extends Foobugs_Standard_AbstractSniff
+class ReservedKeywordsSniff implements PHP_CodeSniffer_Sniff
 {
-    protected $fooRegisterToken = array(
-        T_DIR,
-        T_GOTO,
-        T_NAMESPACE,
-        T_NS_C,
-        T_STRING,
-        T_USE,
+    /**
+     * A list of tokenizers this sniff supports.
+     *
+     * @var array
+     */
+    public $supportedTokenizers = array(
+        'PHP',
     );
 
     /**
@@ -27,19 +41,27 @@ class Php54to55_Sniffs_PHP_ReservedKeywordsSniff extends Foobugs_Standard_Abstra
      *
      * @var array
      */
-    private $keywords = array(
+    protected $keywords = array(
         'finally' => false,
     );
 
     /**
-     * Processes the tokens that this sniff is interested in.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where the token was found.
-     * @param int                  $stackPtr  The position in the stack where
-     *                                        the token was found.
-     *
-     * @return void
-     * @see PHP_CodeSniffer_Sniff::process()
+     * {@inherited}
+     */
+    public function register()
+    {
+        return array(
+            T_DIR,
+            T_GOTO,
+            T_NAMESPACE,
+            T_NS_C,
+            T_STRING,
+            T_USE,
+        );
+    }
+
+    /**
+     * {@inherited}
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -53,7 +75,5 @@ class Php54to55_Sniffs_PHP_ReservedKeywordsSniff extends Foobugs_Standard_Abstra
             );
             $phpcsFile->addError($error, $stackPtr);
         }
-
-        return true;
     }
 }
