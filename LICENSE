@@ -1,7 +1,9 @@
 Copyright (c) 2013-2014 foobugs Oelke & Eichner GbR, http://foobugs.com
 
-The following license applies to all parts of this software except as
-documented below:
+Uses BSD licensed code from the PHP_CodeSniffer Copyright (c) 2012, Squiz Pty Ltd (ABN 77 084 670 600), https://github.com/squizlabs/PHP_CodeSniffer
+
+If not otherwise stated the following license applies to all parts of this
+software as documented below:
 
 ====
 
