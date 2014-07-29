@@ -1,0 +1,17 @@
+<?php
+
+namespace PASSWORD_BCRYPT;
+
+class PASSWORD_BCRYPT {}
+interface PASSWORD_BCRYPT {}
+trait PASSWORD_BCRYPT {}
+function PASSWORD_BCRYPT () {}
+
+$PASSWORD_BCRYPT = 'PASSWORD_BCRYPT';
+
+$x = <<<PASSWORD_BCRYPT
+valid
+PASSWORD_BCRYPT;
+
+defined('PASSWORD_BCRYPT');
+constant('PASSWORD_BCRYPT');

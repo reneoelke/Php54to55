@@ -20,9 +20,10 @@ use PHPUnit_Framework_TestCase;
 abstract class AbstractTestCase extends PHPUnit_Framework_TestCase
 {
     /**
+     * @deprecated -TODO remove
      * @var string
      */
-    protected $standard = 'Php54to55';
+    protected $standard = false;
 
     /**
      * @var string
