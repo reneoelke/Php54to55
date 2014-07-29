@@ -27,12 +27,12 @@ It is strongly recommended to use the latest (stable) PHP version as the tokeniz
 
 # Usage
 
-Add `"foobugs-standards/php54to55": "~2"` to your `composer.json`:
+Add `"foobugs-standards/php54to55": "~1"` to your `composer.json`:
 
 ```json
 {
   "require": {
-    "foobugs-standards/php54to55": "~2"
+    "foobugs-standards/php54to55": "~1"
   }
 }
 ```
