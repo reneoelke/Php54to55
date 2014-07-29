@@ -23,8 +23,18 @@ $_SERVER['argc'] = $argc;
 
 $phpcsFilename = realpath($rootPath . '/vendor/bin/phpcs');
 if (is_file($phpcsFilename)) {
-    ob_start();
-    $cli = new PHP_CodeSniffer_CLI();
-    $cli->runphpcs();
-    ob_end_flush();
+    // phpcs 1.x style execution
+    if (class_exists('PHP_Timer', false) === true) {
+        PHP_Timer::start();
+    }
+
+    $phpcs = new PHP_CodeSniffer_CLI();
+    $phpcs->checkRequirements();
+
+    // -TODO may inject configuration
+    $numErrors = $phpcs->process();
+
+    if ($numErrors > 0) {
+        exit(1);
+    }
 }
