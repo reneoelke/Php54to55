@@ -48,20 +48,23 @@ class ForbiddenFunctionNamesSniff extends SniffBase
         // 5.5.0
         // PHP Core
         'boolval',
+        'array_column',
         'password_get_info',
         'password_hash',
         'password_needs_rehash',
         'password_verify',
-        'array_column',
 
         // curl
         'curl_escape',
         'curl_multi_setopt',
-        'curl_multi_strerror curl_pause',
+        'curl_multi_strerror',
+        'curl_pause',
         'curl_reset',
         'curl_share_close',
         'curl_share_init',
-        'curl_share_setopt curl_strerror and curl_unescape',
+        'curl_share_setopt',
+        'curl_strerror',
+        'curl_unescape',
 
         // Hash
         'hash_pbkdf2',
@@ -173,9 +176,17 @@ class ForbiddenFunctionNamesSniff extends SniffBase
         'socket_sendmsg',
         'socket_recvmsg',
 
-        // 5.5.4
+        // 5.5.5
         // Opcache
         'opcache_compile_file',
+
+        // 5.5.10
+        // LDAP
+        'ldap_modify_batch',
+
+        // 5.5.11
+        // Opcache
+        'opcache_is_script_cached',
     );
 
     public function __construct()

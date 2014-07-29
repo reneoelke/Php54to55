@@ -46,6 +46,9 @@ class ForbiddenClassNamesSniff extends SniffBase
 
     protected $fooProperties = array(
         // PHP 5.5.0
+        // core
+        'Generator',
+
         // intl
         'IntlCalendar',
         'IntlGregorianCalendar',
@@ -53,12 +56,17 @@ class ForbiddenClassNamesSniff extends SniffBase
         'IntlBreakIterator',
         'IntlRuleBasedBreakIterator',
         'IntlCodePointBreakIterator',
+        'UConverter',
 
         // DateTime
         'DateTimeImmutable',
 
         // curl
         'CURLFile',
+
+        // PHP 5.5.1
+        // Session
+        'SessionIdInterface',
     );
 
     public function __construct()

@@ -42,6 +42,11 @@ class ForbiddenConstantNamesSniff extends SniffBase
 
     protected $fooProperties = array(
         // 5.5.0
+        // core
+        'PASSWORD_BCRYPT',
+        'PASSWORD_DEFAULT',
+
+        // curl
         'CURLOPT_FTP_RESPONSE_TIMEOUT',
         'CURLOPT_APPEND',
         'CURLOPT_DIRLISTONLY',
@@ -96,6 +101,7 @@ class ForbiddenConstantNamesSniff extends SniffBase
         'CURLOPT_TCP_KEEPALIVE',
         'CURLOPT_TCP_KEEPIDLE',
         'CURLOPT_TCP_KEEPINTVL',
+        'CURLINFO_RESPONSE_CODE',
 
         // GD
         'IMG_AFFINE_TRANSLATE',
@@ -141,9 +147,14 @@ class ForbiddenConstantNamesSniff extends SniffBase
         'MYSQLI_SERVER_PUBLIC_KEY',
 
         // 5.5.1
+        // CGI/FastCGI SAPI
         'PHP_FCGI_BACKLOG',
 
+        // sockets
+        'SO_BINDTODEVICE',
+
         // 5.5.2
+        // xml
         'LIBXML_SCHEMA_CREATE',
     );
 
