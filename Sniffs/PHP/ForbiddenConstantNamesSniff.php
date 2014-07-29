@@ -174,12 +174,12 @@ class ForbiddenConstantNamesSniff extends SniffBase
 
         switch($token['code']) {
             case T_NAMESPACE:
-                $this->processNamespace($phpcsFile, $stackPtr);
+                $this->foo->processNamespace($phpcsFile, $stackPtr);
                 break;
             case T_STRING:
             default:
                 if ($this->checkNamespace
-                    && $this->getLastNamespaceForFile($phpcsFile)
+                    && $this->foo->getLastNamespaceForFile($phpcsFile)
                 ) {
                     break;
                 }
@@ -239,7 +239,7 @@ class ForbiddenConstantNamesSniff extends SniffBase
 
         // define('string', 'foobar') check for invalid string
         $firstParameterValue = substr($tokens[$firstParameterPtr]['content'], 1, -1);
-        if (isset(static::$fooProperties[$firstParameterValue])) {
+        if (isset($this->fooProperties[$firstParameterValue])) {
             $phpcsFile->addError(
                 sprintf(
                     '%s is an invalid name for a constant',

@@ -230,9 +230,8 @@ class ForbiddenFunctionNamesSniff extends SniffBase
         }
 
         $message = sprintf(
-            '%s is allready a global function defined in PHP %s',
-            $functionName,
-            $this->fooLabel[$functionName]
+            '%s is allready a global function defined in PHP 5.5',
+            $functionName
         );
         $phpcsFile->addError($message, $stackPtr, 'forbiddenFunctionDefintion');
     }
