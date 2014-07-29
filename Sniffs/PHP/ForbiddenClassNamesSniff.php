@@ -12,7 +12,7 @@
 namespace Php54to55\Sniffs\PHP;
 
 use PHP_CodeSniffer_File;
-use FoobugsStandards\Sniffs\AbstractPropertiesSniff;
+use Php54to55\Sniffs\SniffBase;
 
 /**
  * Forbidden Class names
@@ -28,7 +28,7 @@ use FoobugsStandards\Sniffs\AbstractPropertiesSniff;
  * @license The MIT License (http://www.opensource.org/licenses/MIT)
  * @link Php54to55 (https://github.com/foobugs-standards/php54to55)
  */
-class ForbiddenClassNamesSniff extends AbstractPropertiesSniff
+class ForbiddenClassNamesSniff extends SniffBase
 {
     /**
      * Turn namespace check on/off
@@ -44,6 +44,32 @@ class ForbiddenClassNamesSniff extends AbstractPropertiesSniff
         T_TRAIT,
     );
 
+    protected $fooProperties = array(
+        // PHP 5.5.0
+        // intl
+        'IntlCalendar',
+        'IntlGregorianCalendar',
+        'IntlTimeZone',
+        'IntlBreakIterator',
+        'IntlRuleBasedBreakIterator',
+        'IntlCodePointBreakIterator',
+
+        // DateTime
+        'DateTimeImmutable',
+
+        // curl
+        'CURLFile',
+    );
+
+    public function __construct()
+    {
+        // normalise for processing and reporting
+        foreach ($this->fooProperties as $k => $v) {
+            unset($this->fooProperties[$k]);
+            $this->fooProperties[strtolower($v)] = $v;
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -54,14 +80,14 @@ class ForbiddenClassNamesSniff extends AbstractPropertiesSniff
     
         switch ($token['code']) {
             case T_NAMESPACE:
-                $this->processNamespace($phpcsFile, $stackPtr);
+                $this->foo->processNamespace($phpcsFile, $stackPtr);
                 break;
             case T_CLASS:
             case T_INTERFACE:
             case T_TRAIT:
             default:
                 // only check classnames if we're in global namespace
-                if ($this->checkNamespace && $this->getLastNamespaceForFile($phpcsFile)) {
+                if ($this->checkNamespace && $this->foo->getLastNamespaceForFile($phpcsFile)) {
                     break;
                 }
                 $this->processClass($phpcsFile, $stackPtr);
@@ -90,10 +116,10 @@ class ForbiddenClassNamesSniff extends AbstractPropertiesSniff
 
         // check if the class name is forbidden
         $nameOfClass = strtolower($nameOfClass);
-        if (isset(static::$fooProperties[$nameOfClass])) {
+        if (isset($this->fooProperties[$nameOfClass])) {
             $message = sprintf(
                 '%s was added in the PHP 5.5 global namespace and can’t be defined',
-                static::$fooProperties[$nameOfClass]
+                $this->fooProperties[$nameOfClass]
             );
             $phpcsFile->addError($message, $stackPtr);
         }

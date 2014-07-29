@@ -11,8 +11,8 @@
 
 namespace Php54to55\Sniffs\PHP;
 
-use PHP_CodeSniffer_Sniff;
 use PHP_CodeSniffer_File;
+use Php54to55\Sniffs\SniffBase;
 
 /**
  * Reserved Keywords
@@ -25,39 +25,24 @@ use PHP_CodeSniffer_File;
  * @license The MIT License (http://www.opensource.org/licenses/MIT)
  * @link Php54to55 (https://github.com/foobugs-standards/php54to55)
  */
-class ReservedKeywordsSniff implements PHP_CodeSniffer_Sniff
+class ReservedKeywordsSniff extends SniffBase
 {
-    /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = array(
-        'PHP',
+    protected $fooRegisterTokens = array(
+        T_DIR,
+        T_GOTO,
+        T_NS_C,
+        T_STRING,
+        T_CLASS_C,
     );
 
-    /**
-     * List with reserved PHP keywords.
-     *
-     * @var array
-     */
-    protected $keywords = array(
-        'finally' => false,
+    protected $fooProperties = array(
+        'finally',
     );
 
-    /**
-     * {@inherited}
-     */
-    public function register()
+    public function __construct()
     {
-        return array(
-            T_DIR,
-            T_GOTO,
-            T_NAMESPACE,
-            T_NS_C,
-            T_STRING,
-            T_USE,
-        );
+        // normalize for processing
+        $this->fooProperties = array_flip($this->fooProperties);
     }
 
     /**
@@ -68,7 +53,7 @@ class ReservedKeywordsSniff implements PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr]['content'];
 
-        if (isset($this->keywords[$token])) {
+        if (isset($this->fooProperties[$token])) {
             $error = sprintf(
                 'Use of reserved keyword "%s"!',
                 $token
