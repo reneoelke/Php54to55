@@ -44,7 +44,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Php54to55\\Sniffs\\": "Sniffs"
+            "Php54to55\\Sniffs\\": "Sniffs",
+            "FoobugsStandards\\": "src"
         }
     },
     "bin": [

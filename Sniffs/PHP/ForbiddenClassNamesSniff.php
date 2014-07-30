@@ -11,8 +11,8 @@
 
 namespace Php54to55\Sniffs\PHP;
 
-use PHP_CodeSniffer_Sniff;
 use PHP_CodeSniffer_File;
+use Php54to55\Sniffs\SniffBase;
 
 /**
  * Forbidden Class names
@@ -28,17 +28,8 @@ use PHP_CodeSniffer_File;
  * @license The MIT License (http://www.opensource.org/licenses/MIT)
  * @link Php54to55 (https://github.com/foobugs-standards/php54to55)
  */
-class ForbiddenClassNamesSniff implements PHP_CodeSniffer_Sniff
+class ForbiddenClassNamesSniff extends SniffBase
 {
-    /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = array(
-        'PHP',
-    );
-
     /**
      * Turn namespace check on/off
      *
@@ -46,19 +37,18 @@ class ForbiddenClassNamesSniff implements PHP_CodeSniffer_Sniff
      */
     public $checkNamespace = true;
 
-    /**
-     * Buffer for namespace parsing.
-     *
-     * @var array(string = string)
-     */
-    protected $lastNamespacesPerFile = array();
+    protected $fooRegisterTokens = array(
+        T_CLASS,
+        T_NAMESPACE,
+        T_INTERFACE,
+        T_TRAIT,
+    );
 
-    /**
-     * A list of forbidden function names
-     *
-     * @var array(string => array(string, [string]))
-     */
-    protected $forbiddenClassnames = array(
+    protected $fooProperties = array(
+        // PHP 5.5.0
+        // core
+        'Generator',
+
         // intl
         'IntlCalendar',
         'IntlGregorianCalendar',
@@ -66,38 +56,26 @@ class ForbiddenClassNamesSniff implements PHP_CodeSniffer_Sniff
         'IntlBreakIterator',
         'IntlRuleBasedBreakIterator',
         'IntlCodePointBreakIterator',
+        'UConverter',
 
         // DateTime
         'DateTimeImmutable',
 
         // curl
         'CURLFile',
+
+        // PHP 5.5.1
+        // Session
+        'SessionIdInterface',
     );
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
-        // convert human readable to testable format
-        $forbiddenClassnames = array();
-        foreach ($this->forbiddenClassnames as $cn) {
-            $forbiddenClassnames[strtolower($cn)] = $cn;
+        // normalise for processing and reporting
+        foreach ($this->fooProperties as $k => $v) {
+            unset($this->fooProperties[$k]);
+            $this->fooProperties[strtolower($v)] = $v;
         }
-        $this->forbiddenClassnames = $forbiddenClassnames;
-    }
-
-     /**
-      * {@inheritdoc}
-      */
-    public function register()
-    {
-        return array(
-            T_CLASS,
-            T_NAMESPACE,
-            T_INTERFACE,
-            T_TRAIT,
-        );
     }
 
     /**
@@ -108,17 +86,16 @@ class ForbiddenClassNamesSniff implements PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
     
-        $result = true;
         switch ($token['code']) {
             case T_NAMESPACE:
-                $this->processNamespace($phpcsFile, $stackPtr);
+                $this->foo->processNamespace($phpcsFile, $stackPtr);
                 break;
             case T_CLASS:
             case T_INTERFACE:
             case T_TRAIT:
             default:
                 // only check classnames if we're in global namespace
-                if ($this->checkNamespace && isset($this->lastNamespacesPerFile[$phpcsFile->getFilename()])) {
+                if ($this->checkNamespace && $this->foo->getLastNamespaceForFile($phpcsFile)) {
                     break;
                 }
                 $this->processClass($phpcsFile, $stackPtr);
@@ -136,7 +113,6 @@ class ForbiddenClassNamesSniff implements PHP_CodeSniffer_Sniff
     public function processClass(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
 
         // find the name of the defined class
         $nameOfClassStackPtr = $phpcsFile->findNext(array(T_STRING), $stackPtr, null, false);
@@ -148,32 +124,13 @@ class ForbiddenClassNamesSniff implements PHP_CodeSniffer_Sniff
 
         // check if the class name is forbidden
         $nameOfClass = strtolower($nameOfClass);
-        if (isset($this->forbiddenClassnames[$nameOfClass])) {
+        if (isset($this->fooProperties[$nameOfClass])) {
             $message = sprintf(
                 '%s was added in the PHP 5.5 global namespace and can’t be defined',
-                $this->forbiddenClassnames[$nameOfClass]
+                $this->fooProperties[$nameOfClass]
             );
             $phpcsFile->addError($message, $stackPtr);
         }
-
-        return $this;
-    }
-
-    /**
-     * Process namespace.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int $stackPtr
-     * @return $this
-     */
-    protected function processNamespace(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
-        $namspaceToken = $tokens[
-            $phpcsFile->findNext(array(T_STRING), ($stackPtr + 1), null, false)
-        ];
-        $this->lastNamespacesPerFile[$phpcsFile->getFilename()] = strtolower($namspaceToken['content']);
 
         return $this;
     }
