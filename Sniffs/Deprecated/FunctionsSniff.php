@@ -20,7 +20,7 @@ use Generic_Sniffs_PHP_DeprecatedFunctionsSniff;
  * PHP 5.5.
  *
  * @package Php54to55
- * @author René Oelke <rene.oelke@foobugs.com>
+ * @author RenÃ© Oelke <rene.oelke@foobugs.com>
  * @author Marcel Eichner <marcel.eichner@foobugs.com>
  * @author Maik Penz <maik.penz@foobugs.com>
  * @copyright 2013-2014 foobugs Oelke & Eichner GbR <mail@foobugs.com>

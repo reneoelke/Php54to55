@@ -9,6 +9,11 @@ $arguments = array(
     realpath(__DIR__ . '/../..'),
 );
 
+// set standard standard name if not given
+if (false === stripos(implode($argv), '--standard=')) {
+    $arguments[] = '--standard=' . basename(dirname(__DIR__));
+}
+
 // Insert special arguments before all others
 array_splice($argv, 1, 0, $arguments);
 $argc = sizeof($argv);
@@ -18,9 +23,18 @@ $_SERVER['argc'] = $argc;
 
 $phpcsFilename = realpath($rootPath . '/vendor/bin/phpcs');
 if (is_file($phpcsFilename)) {
-    $result = ob_start(function ($buffer) {
-        return (str_replace('#!/usr/bin/env php' . PHP_EOL, '', $buffer));
-    });
-    require $phpcsFilename;
-    ob_end_flush();
+    // phpcs 1.x style execution
+    if (class_exists('PHP_Timer', false) === true) {
+        PHP_Timer::start();
+    }
+
+    $phpcs = new PHP_CodeSniffer_CLI();
+    $phpcs->checkRequirements();
+
+    // -TODO may inject configuration
+    $numErrors = $phpcs->process();
+
+    if ($numErrors > 0) {
+        exit(1);
+    }
 }
